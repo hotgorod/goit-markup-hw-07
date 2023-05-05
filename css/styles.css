@@ -39,7 +39,21 @@ img {
   line-height: 1.17;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  margin-right: 76px;
+  padding-top: 25px;
+  padding-bottom: 23px;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .logo {
+    margin-right: 120px;
+  }
+}
+
+@media only screen and (min-width: 1158px) {
+  .logo {
+    margin-right: 76px;
+  }
 }
 
 /* сброс настроек для списка */
@@ -93,9 +107,16 @@ img {
 } */
 
 .site-nav {
-  display: flex;
-  gap: 40px;
+  display: none;
 }
+
+@media only screen and (min-width: 768px) {
+  .site-nav {
+    display: flex;
+    gap: 40px;
+  }
+}
+
 .site-nav .link {
   display: block;
   padding-top: 24px;
@@ -140,21 +161,44 @@ img {
 }
 
 .address {
-  display: flex;
-  font-style: normal;
-  gap: 40px;
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .address {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media only screen and (min-width: 1158px) {
+  .address {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+  }
 }
 
 .address .link {
+  font-style: normal;
   color: var(--primary-text-color);
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
 
   transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media only screen and (min-width: 1158px) {
+  .address .link {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
 }
 
 .address .link:hover,
@@ -520,45 +564,25 @@ img {
 }
 
 .feature-list {
-  /* display: flex;
-
-  gap: 24px; */
-}
-
-.feature-list:last-child {
-  margin-bottom: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  .feature-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 72px;
 }
 
 .feature-list .item {
   width: 100%;
-  margin-bottom: 72px;
-}
-
-.feature-list .item:last-child {
-  margin-bottom: 0;
 }
 
 @media only screen and (min-width: 768px) {
   .feature-list .item {
     width: calc((100% - 24px) / 2);
   }
-  .feature-list .item:nth-last-child(2) {
-    margin-bottom: 0;
-  }
 }
 
 @media only screen and (min-width: 1158px) {
   .feature-list .item {
     width: calc((100% - 72px) / 4);
-    margin-bottom: 0;
   }
 }
 
@@ -587,7 +611,7 @@ img {
   letter-spacing: 0.02em;
 }
 
-@media only screen and (min-width: minwidthpx) {
+@media only screen and (min-width: 1158px) {
   .feature-list .text {
     font-weight: 400;
   }
@@ -698,14 +722,29 @@ img {
 }
 
 .section-customers {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+@media only screen and (min-width: 1158px) {
+  .section-customers {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
 }
 
 .customers-list {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 72px;
   justify-content: center;
+}
+
+@media only screen and (min-width: 786px) {
+  .customers-list {
+    column-gap: 24px;
+  }
 }
 
 .customers-link {
@@ -1005,4 +1044,71 @@ img {
 .gallery .link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+/* Mobile menu styles */
+
+.menu-toggle {
+  min-height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 32px;
+  background-color: grey;
+  z-index: 999;
+
+  transform: translateX(100%);
+  transition: transform 250ms ease-in-out;
+}
+
+.menu-container.is-open {
+  transform: translateX(0);
+}
+
+.menu-container .menu-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #fff;
+}
+
+.mobile-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.mobile-menu .link {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
 }
